@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}Register | {% endblock %}
+
+{% block body %}
+    <form action="/register" method="post">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        {% if error == None %}
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else or use it for sending spam.</small>
+        {% elif error == 1 %}
+            <input name="email" type="email" class="form-control is-invalid" aria-describedby="emailHelp" placeholder="Enter email">
+            <div class="invalid-feedback">{{ text }}</div>
+        {% else %}
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{ email }}">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else or use it for sending spam.</small>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        {% if error == None %}
+            <input name="username" type="text" class="form-control" placeholder="Enter username">
+            <small id="emailHelp" class="form-text text-muted">Other users will see this name next to your comments.</small>
+        {% elif error == 2 %}
+            <input name="username" type="text" class="form-control is-invalid" placeholder="Enter username">
+            <div class="invalid-feedback">{{ text }}</div>
+        {% else %}
+            <input name="username" type="text" class="form-control" placeholder="Enter username" value="{{ username }}">
+            <small id="emailHelp" class="form-text text-muted">Other users will see this name next to your comments.</small>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        {% if error == 3 %}
+            <input name="password" type="password" class="form-control is-invalid" placeholder="Password">
+            <div class="invalid-feedback">{{ text }}</div>
+        {% else %}
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <small id="emailHelp" class="form-text text-muted">We recommend you to make the password long and containing both digits and letters in different registers.</small>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password (again)</label>
+        {% if error == 4 %}
+            <input name="confirmation" type="password" class="form-control is-invalid" placeholder="Password (again)">
+            <div class="invalid-feedback">{{ text }}</div>
+        {% else %}
+            <input name="confirmation" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password (again)">
+            <small id="emailHelp" class="form-text text-muted">Confirm your password.</small>
+        {% endif %}
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+{% endblock %}

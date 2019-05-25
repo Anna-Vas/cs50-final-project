@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% if from_where == "random" %}
+    Random |
+{% elif from_where == "top" %}
+    Top |
+{% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="view-content">
+        {% for story in stories %}
+            <div class="post cit_395664">
+            <span class="number"><a href="/post/{{ story['id'] }}">#{{ story['id'] }}</a></span>
+            <span class="time">{{ story['datetime'] }}</span>
+            <span class="post_id">
+            [
+            <span class="votes">
+            <a class="cit_plus" href="/like/{{ story['id'] }}/{{ from_where }}">+</a>
+            </span>
+            <span class="raiting">
+            {{ story['likes'] }}        </span>
+            <span class="votes">
+            <a class="cit_minus" href="/dislike/{{ story['id'] }}/{{ from_where }}">−</a>
+            </span>
+            ]
+            </span>
+            <div class="content">
+                {{ story['text'] }}
+            </div>
+            <span><a href="/post/{{ story['id'] }}">Comments</a> ({{ story['comments'] }})</span>
+            </div>
+        {% endfor %}
+        {% if from_where == "random" %}
+            <a href="/random" class="btn btn-dark btn-lg btn-block" style="text-decoration:none; color:white">Other stories</a>
+        {% elif pages_count > 1 %}
+            <div style="margin-left:457px">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+                            <a class="page-link" href="{% if from_where != 'index' %}/{{ from_where }}{% endif %}/page/{{ current_page - 1 }}" tabindex="-1">&laquo;</a>
+                        </li>
+                        {% for i in range(1, pages_count+1) %}
+                            <li class="page-item {% if i == current_page %}active{% endif %}"><a class="page-link" href="{% if from_where != 'index' %}/{{ from_where }}{% endif %}/page/{{ i }}">{{ i }}</a></li>
+                        {% endfor %}
+                        <li class="page-item {% if current_page == pages_count %}disabled{% endif %}">
+                            <a class="page-link" href="{% if from_where != 'index' %}/{{ from_where }}{% endif %}/page/{{ current_page + 1 }}">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

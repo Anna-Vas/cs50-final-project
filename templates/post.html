@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}Story #{{ story['id'] }} | {% endblock %}
+
+{% block body %}
+
+<div class="view-content">
+    <div class="post cit_395664">
+        <span class="number"><a href="#">#{{ story['id'] }}</a></span>
+        <span class="time">{{ story['datetime'] }}</span>
+        <span class="post_id">
+        [
+        <span class="votes">
+        <a class="cit_plus" href="/like/{{ story['id'] }}/post">+</a>
+        </span>
+        <span class="raiting">
+        {{ story['likes'] }}        </span>
+        <span class="votes">
+        <a class="cit_minus" href="/dislike/{{ story['id'] }}/post">−</a>
+        </span>
+        ]
+        </span>
+        <div class="content">
+            {{ story['text'] }}
+        </div>
+    </div>
+</div>
+
+<h1>Comments ({{ com_count }})</h1>
+    {% if comments != None %}
+    <div class="view-content">
+        <div class="post cit_395664">
+            {% for comment in comments %}
+                <div style="margin-top:15px">
+                    <strong>{{ comment['username'] }}</strong>
+                    {% for i in range (47) %}
+                    &#4448;
+                    {% endfor %}
+                    <span class="votes">
+                        <a class="cit_plus" href="/com_like/{{ comment['id'] }}">+</a> / <a class="cit_minus" href="/com_dislike/{{ comment['id'] }}">−</a>
+                    </span>
+                    <span class="raiting" style="margin-left:5px">( {{ comment['likes'] }} )</span>
+                    <div class="content">{{ comment['text'] }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+        <p>There are no comments for this story yet. You can be the first.</p>
+    {% endif %}
+        <br>
+        {% if username == None %}
+            <p>You are not authorized. <a href="/login">Log in</a> or <a href="/register">register</a> to leave a comment.</p>
+        {% else %}
+            <form action="/post/{{ story['id'] }}" method="post">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Comment</label>
+                    {% if error == None %}
+                        <textarea type="text" name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    {% else %}
+                        <textarea type="text" name="message" class="form-control is-invalid" rows="3"></textarea>
+                        <div class="invalid-feedback">Please fill this field.</div>
+                    {% endif %}
+                </div>
+                <p style="margin-bottom:10px">You are authorized as <b>{{ username }}</b>.</p>
+                <button type="submit" style="btn btm-primary">Leave a comment</button>
+            </form>
+        {% endif %}
+{% endblock %}

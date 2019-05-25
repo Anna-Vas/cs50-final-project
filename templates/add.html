@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}Add your story | {% endblock %}
+
+{% block body %}
+
+{% if error != None %}
+<p style="color:red">You made a mistake when filling out the form. Try again.</p><br>
+{% endif %}
+
+<form action="{{ url_for('add') }}" method="post">
+    <div class="form-group">
+        {% if user_id == None %}
+            <label for="exampleFormControlInput1">Email address:</label>
+            {% if error == None %}
+                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    We won't share your email with anyone else or use it for sending spam.
+                </small>
+            {% elif error == 1 %}
+                <input type="email" name="email" class="form-control is-invalid" id="validationServerUsername" placeholder="name@example.com">
+                <div class="invalid-feedback">
+                    Please provide your email.
+                </div>
+            {% else %}
+                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value="{{ email }}">
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    We'll never share your email with anyone else or use it for sending spam.
+                </small>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Story:</label>
+        {% if error == None %}
+            <textarea type="text" name="story" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        {% elif error == 2 %}
+            <textarea type="text" name="story" class="form-control is-invalid" rows="3"></textarea>
+            <div class="invalid-feedback">
+                Please provide the text of your story.
+            </div>
+        {% else %}
+            <textarea type="text" name="story" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ story }}</textarea>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {% if error == 3 or error == 4 %}
+            <label for="inputPassword6">{{ cap_1 }} + {{ cap_2 }} =</label>
+            <input type="text" name="captcha" class="form-control is-invalid">
+            {% if error == 3 %}
+                    <div class="invalid-feedback">
+                        Please fill this field.
+                    </div>
+            {% elif error == 4 %}
+                    <div class="invalid-feedback">
+                        Your solution is wrong. Try again.
+                    </div>
+            {% endif %}
+        {% else %}
+            <label for="inputPassword6">{{ cap_1 }} + {{ cap_2 }} =</label>
+            <input type="text" name="captcha" class="form-control">
+            <small id="passwordHelpInline" class="text-muted">
+                This is a test if you are not a robot.
+            </small>
+        {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+{% endblock %}

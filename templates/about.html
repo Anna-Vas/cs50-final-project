@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}About the site | {% endblock %}
+
+{% block body %}
+
+<h2 style="margin-bottom:10px">Welcome to “I HATE IT!”</h2>
+
+<p style="margin-bottom:10px">Probably everyone has something that makes you REALLY MAD. This site can help you to tell the world about it. Add your story to unburden yourself! And maybe someone who reads your story will recognize himself or herself and stop acting like before.</p>
+
+<div class="card bg-light mb-3" style="width: 18rem; margin-top:30px">
+  <div class="card-body">
+    <h5 class="card-title">Statistics</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ stories_count }} stories</li>
+    <li class="list-group-item">{{ users_count }} users</li>
+    <li class="list-group-item">{{ comments_count }} comments</li>
+  </ul>
+</div>
+
+{% endblock %}
