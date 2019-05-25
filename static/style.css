@@ -1,0 +1,190 @@
+a,
+input,
+textarea {
+	outline: 0 none;
+}
+
+#logomenu {
+    width: 1200px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+a:link, a:active {
+color:#123D7F;
+}
+
+a:visited {
+color:#38547F;
+}
+
+a:hover {
+color:#1D61CC;
+text-decoration:none
+}
+
+#tabs {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+#tabs ul {
+	margin: 0;
+}
+a, form, p, h1, h2, h3, h4 {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+table, tbody, tr, td, input {
+	margin: 0;
+	padding: 0;
+}
+sup,
+sub {
+	height: 0;
+	line-height: 1;
+	vertical-align: baseline;
+	_vertical-align: bottom;
+	position: relative;
+
+}
+sup {
+	bottom: 1ex;
+}
+sub {
+	top: .5ex;
+}
+#center p {
+	margin-bottom: 15px;
+}
+#center p:last-child {
+	margin-bottom: 0;
+}
+#center li {
+	list-style-position: inside;
+}
+
+#center img[style*="float: left"]{
+	margin: 5px 10px 5px 0;
+}
+#center img[style*="float: right"]{
+	margin: 5px 0 5px 10px;
+}
+
+.post,
+.post1
+{
+    margin-bottom: 2em;
+}
+
+.post .number,
+.post1 .number
+{
+    font-size: 120%;
+}
+
+.post .time,
+.post1 .time
+{
+    color: #666;
+    font: 90% Arial,sans-serif;
+    margin: 0 10px;
+}
+
+#center .content{
+    line-height: 160%;
+}
+
+.post .content,
+.post1 .content
+{
+    background-color: #f3f3f3;
+    border: 1px dotted #a0a0a0;
+    font-size: 100%;
+    padding: 3px;
+}
+
+#center .content{
+    color: #000;
+}
+
+ul.pager li{
+    padding: 0 !important;
+    margin: 0 0 0 2px !important;
+}
+
+ul.pager li.first{
+    margin: 0 !important;
+}
+
+.raiting div,
+.rt div
+{
+    display: inline;
+}
+
+#center h3 {
+    background-image: url("images/dotted-underline.gif");
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    padding-bottom: 8px;
+
+    color: #c61a1a;
+    font-size: 170%;
+    font-weight: normal;
+    line-height: 110%;
+    margin-bottom: 0.75em;
+}
+
+.post1 .c_votes {
+    text-align: right;
+}
+.post1 .author {
+    color: #111;
+    float: left;
+    font-weight: bold;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.comment_new label{
+    font-weight: normal;
+}
+
+.comment_new .form-item input{
+    width: 180px;
+    padding: 2px;
+    height: 16px;
+}
+
+.comment_new .form-item textarea{
+    height: 160px;
+    width: 455px;
+    padding: 2px;
+}
+
+.button {
+    border: 1px solid #ccc;
+    margin: 1px;
+    padding: 2px;
+}
+
+.c_add_form textarea{
+    width: 465px;
+    height: 137px;
+    padding: 2px;
+}
+
+.c_add_form .form-submit{
+    border: 1px solid #ccc;
+    font-size: 14px;
+    height: 25px;
+    margin: 1px;
+    padding: 2px;
+    width: 90px;
+}
+
+#block-block-6 .content p{
+    margin: 12px 0 12px 0;
+}
