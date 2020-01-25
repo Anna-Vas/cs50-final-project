@@ -100,7 +100,7 @@ def post(id):
         user_id = session["user_id"]
         sql = "INSERT INTO comments (text, post_id, user_id) VALUES (:message, :post_id, :user_id)"
         db.execute(sql, message=message, post_id=id, user_id=user_id)
-        return redirect(f"/post/{id}")
+        return redirect("/post/{}".format(id))
     else:
         story = db.execute("SELECT * FROM stories WHERE id=:id", id=id)
         comments = db.execute("SELECT * FROM comments WHERE post_id=:id", id=id)
@@ -133,11 +133,11 @@ def like(post_id, from_where):
     likes = db.execute("SELECT likes FROM stories WHERE id=:post_id", post_id=post_id)[0]["likes"]
     db.execute("UPDATE stories SET likes = :likes WHERE id = :post_id", likes=likes + 1, post_id=post_id)
     if from_where == "post":
-        return redirect(f"/post/{post_id}")
+        return redirect("/post/{}".format(post_id))
     elif from_where == "index":
         return redirect("/")
     else:
-        return redirect(f"/{from_where}")
+        return redirect("/{}".format(from_where))
 
 
 # Dislike a story
@@ -146,11 +146,11 @@ def dislike(post_id, from_where):
     likes = db.execute("SELECT likes FROM stories WHERE id=:post_id", post_id=post_id)[0]["likes"]
     db.execute("UPDATE stories SET likes = :likes WHERE id = :post_id", likes=likes - 1, post_id=post_id)
     if from_where == "post":
-        return redirect(f"/post/{post_id}")
+        return redirect("/post/{}".format(post_id))
     elif from_where == "index":
         return redirect("/")
     else:
-        return redirect(f"/{from_where}")
+        return redirect("/{}".format(from_where))
 
 
 # Like a comment
@@ -160,7 +160,7 @@ def com_like(com_id):
     post_id = comment["post_id"]
     likes = comment["likes"]
     db.execute("UPDATE comments SET likes = :likes WHERE id = :com_id", likes=likes + 1, com_id=com_id)
-    return redirect(f"/post/{post_id}")
+    return redirect("/post/{}".format(post_id))
 
 
 # Dislike a comment
@@ -170,14 +170,14 @@ def com_dislike(com_id):
     post_id = comment["post_id"]
     likes = comment["likes"]
     db.execute("UPDATE comments SET likes = :likes WHERE id = :com_id", likes=likes - 1, com_id=com_id)
-    return redirect(f"/post/{post_id}")
+    return redirect("/post/{}".format(post_id))
 
 
 # Top section
 @app.route("/top", defaults={'page': 1})
 @app.route('/top/page/<int:page>')
 def top(page):
-    print(f"page = {page}")
+    print("page = {}".format(page))
 
     if page <= 0:
         return render_template("404.html")
