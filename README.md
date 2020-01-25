@@ -1,4 +1,4 @@
-# CS50x final project (2018)
+# I HATE IT website
 
 This is my final project for Harvard CS50x course. It's a website named “I hate it” that was created in order to give everyone a chance to let the world know about what they really don't like. Every user can add a story about anything they think is annoying.
 
