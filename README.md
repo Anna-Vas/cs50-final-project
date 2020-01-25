@@ -1,5 +1,3 @@
-# I HATE IT website
-
 ## About the website
 
 This is my final project for [Harvard CS50x](https://cs50.harvard.edu/x/2020/) course. It's a website named *“I hate it”* that was created in order to give everyone a chance to let the world know about what they really don't like. Every user can add a story about anything they think is annoying.
